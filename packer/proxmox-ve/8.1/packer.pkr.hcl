@@ -9,7 +9,9 @@ source "virtualbox-iso" "proxmox-ve-8-1" {
     "<down><enter>", # Terminal install
     "<wait30>", # Wait for DHCP and clock sync
     "<enter>", # Licence accept
+    "<wait2>",
     "<enter>", # Choose disk
+    "<wait2>",
     "<up><up><up><enter>", # Choose country
     "<end><up><up><up><up><up><up><up><up><up><up><up><up><up><up><up><enter>", # United Kingdom
     "<down><down><enter>", # Choose keyboard layout
@@ -20,8 +22,11 @@ source "virtualbox-iso" "proxmox-ve-8-1" {
     "vagrant<down>", # root password
     "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>", # delete 'mail@example.invalid'
     "vagrant<leftShiftOn>'<leftShiftOff>localhost.com<down>", # root email
+    "<wait2>",
     "<enter>", # Confirm root credentials
+    "<wait2>",
     "<enter>", # Confirm network settings
+    "<wait2>",
     "<right><enter>" # Begin installation
   ]
   memory = 4096
@@ -33,7 +38,8 @@ source "virtualbox-iso" "proxmox-ve-8-1" {
   rtc_time_base = "UTC"
 
   vboxmanage = [
-    [ "modifyvm", "{{.Name}}", "--firmware", "EFI" ],
+    [ "modifyvm", "{{.Name}}", "--nic1", "bridged", "--bridgeadapter1", "wlp76s0"],
+    [ "modifyvm", "{{.Name}}", "--cableconnected1", "on"],
   ]
 }
 
