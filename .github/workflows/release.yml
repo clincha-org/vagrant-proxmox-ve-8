@@ -1,6 +1,8 @@
 name: Release
 on:
-  - push
+  release:
+    types:
+      - published
 jobs:
   build_and_release:
     runs-on: ubuntu-22.04
@@ -29,7 +31,7 @@ jobs:
         working-directory: packer/proxmox-ve/8
         run: |
           packer build \
-          -var "version=0.0.2" \
+          -var "version=${{ github.event.release.tag_name }}" \
           -var "access_token=${{ secrets.ACCESS_TOKEN }}" \
           -var "version_description=Build $(date +'%Y-%m-%d')" \
           -var "headless=true" \
