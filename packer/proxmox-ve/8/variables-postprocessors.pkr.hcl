@@ -16,17 +16,17 @@ variable "include" {
 
 # vagrant-cloud
 variable "box_tag" {
-  type    = "string"
+  type    = string
   default = "clincha/proxmox-ve-8"
 }
 variable "version" {
-  type = "string"
+  type = string
 }
 variable "access_token" {
-  type      = "string"
+  type      = string
   sensitive = true
 }
 variable "version_description" {
-  type    = "string"
+  type    = string
   default = "Proxmox VE 8 - latest updates"
 }
