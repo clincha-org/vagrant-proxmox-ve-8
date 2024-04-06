@@ -46,9 +46,10 @@ build {
     }
 
     post-processor "vagrant-cloud" {
-      box_tag      = var.box_tag
-      version      = var.version
-      access_token = var.access_token
+      box_tag             = var.box_tag
+      version             = var.version
+      access_token        = var.access_token
+      version_description = var.version_description
     }
   }
 }

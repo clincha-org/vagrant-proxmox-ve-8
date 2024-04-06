@@ -26,3 +26,7 @@ variable "access_token" {
   type      = "string"
   sensitive = true
 }
+variable "version_description" {
+  type    = "string"
+  default = "Proxmox VE 8 - latest updates"
+}

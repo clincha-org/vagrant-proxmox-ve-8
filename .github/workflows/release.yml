@@ -1,0 +1,38 @@
+name: Release
+on:
+  - push
+jobs:
+  build_and_release:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: "Install Packer"
+        run: |
+          wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+          echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+          sudo apt update && sudo apt install packer
+
+      - name: "Install VirtualBox"
+        run: |
+          wget -O- https://www.virtualbox.org/download/oracle_vbox_2016.asc | sudo gpg --dearmor --o /usr/share/keyrings/oracle-virtualbox-2016.gpg
+          deb [arch=amd64 signed-by=/usr/share/keyrings/oracle-virtualbox-2016.gpg] https://download.virtualbox.org/virtualbox/debian $(lsb_release -cs) contrib | sudo tee /etc/apt/sources.list.d/hashicorp.list
+          sudo apt update && sudo apt install virtualbox-7.0
+
+      - name: "Checkout code"
+        uses: actions/checkout@v4
+
+      - name: "Install Packer plugins"
+        run: |
+          packer plugins install github.com/hashicorp/virtualbox
+          packer plugins install github.com/hashicorp/vagrant
+
+      - name: Set current date as environment variable
+        run: echo "NOW=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+
+      - name: "Build and release"
+        working-directory: packer/proxmox-ve/8
+        run: |
+          packer build \
+          -var "version=0.0.2" \
+          -var "access_token=${{ secrets.ACCESS_TOKEN }}" \
+          -var "version_description=Build $NOW" \
+          .
