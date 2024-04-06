@@ -57,3 +57,7 @@ variable "rtc_time_base" {
   type    = string
   default = "UTC"
 }
+variable "headless" {
+  type    = bool
+  default = false
+}

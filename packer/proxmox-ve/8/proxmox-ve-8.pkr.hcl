@@ -17,6 +17,7 @@ source "virtualbox-iso" "proxmox-ve-8" {
   nested_virt   = var.nested_virt
   firmware      = var.firmware
   rtc_time_base = var.rtc_time_base
+  headless      = var.headless
 }
 
 build {
