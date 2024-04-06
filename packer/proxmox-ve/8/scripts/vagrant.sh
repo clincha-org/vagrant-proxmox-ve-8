@@ -2,16 +2,20 @@
 # See: https://developer.hashicorp.com/vagrant/docs/boxes/base
 
 # Add vagrant user
-useradd vagrant
+adduser vagrant --verbose --comment "Vagrant User" --disabled-password
 echo "vagrant:vagrant" | chpasswd
 
 # Create vagrant ssh directory
-mkdir -p /home/vagrant/.ssh
-chmod 700 /home/vagrant/.ssh
+mkdir /home/vagrant/.ssh
 
 # Add vagrant insecure public keys
 curl -sL https://raw.githubusercontent.com/hashicorp/vagrant/main/keys/vagrant.pub.rsa >> /home/vagrant/.ssh/authorized_keys
 curl -sL https://raw.githubusercontent.com/hashicorp/vagrant/main/keys/vagrant.pub.ed25519 >> /home/vagrant/.ssh/authorized_keys
+
+# Set permissions
+chmod 700 /home/vagrant/.ssh
+chmod 600 /home/vagrant/.ssh/authorized_keys
+chown -R vagrant:vagrant /home/vagrant/.ssh
 
 # Install sudo
 apt-get update

@@ -1,0 +1,12 @@
+{
+  "author": [
+    "clincha"
+  ],
+  "homepage": "https://github.com/clincha-org/clincha",
+  "description": "A Proxmox virtual environment 8.1-2 vagrant box",
+  "short": "Proxmox 8.1-2 VirtualBox vagrant box",
+  "tags": [
+    "proxmox",
+    "vagrant"
+  ]
+}
