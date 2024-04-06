@@ -1,11 +1,13 @@
 source "virtualbox-iso" "proxmox-ve-8-1" {
-  guest_os_type    = "Debian12_64"
-  iso_url          = "https://enterprise.proxmox.com/iso/proxmox-ve_8.1-2.iso"
-  iso_checksum     = "sha256:f3e3d2a6ad8e44020a499855475a304dbb672c284410a3792826098c906c63c0"
-  ssh_username     = "root"
-  ssh_password     = "vagrant"
-  shutdown_command = "echo 'packer' | shutdown now"
-  boot_command     = [
+  guest_os_type = "Debian12_64"
+  iso_url       = "https://enterprise.proxmox.com/iso/proxmox-ve_8.1-2.iso"
+  iso_checksum  = "sha256:f3e3d2a6ad8e44020a499855475a304dbb672c284410a3792826098c906c63c0"
+
+  ssh_username = "root"
+  ssh_password = "vagrant"
+  ssh_timeout  = "10m"
+
+  boot_command = [
     "<down><enter>", # Terminal install
     "<wait30>", # Wait for DHCP and clock sync
     "<enter>", # Licence accept
@@ -32,9 +34,10 @@ source "virtualbox-iso" "proxmox-ve-8-1" {
     "<wait2>",
     "<right><enter>" # Begin installation
   ]
-  memory      = 4096
-  cpus        = 2
-  ssh_timeout = "10m"
+  shutdown_command = "echo 'packer' | shutdown now"
+
+  cpus   = 2
+  memory = 4096
 
   nested_virt   = true
   firmware      = "efi"
@@ -45,10 +48,18 @@ build {
   sources = ["sources.virtualbox-iso.proxmox-ve-8-1"]
 
   provisioner "shell" {
-    script = "disable_enterprise_repositories.sh"
+    script = "scripts/non-interactive-front-end.sh"
   }
 
   provisioner "shell" {
-    script = "vagrant.sh"
+    script = "scripts/disable_enterprise_repositories.sh"
+  }
+
+  provisioner "shell" {
+    script = "scripts/update.sh"
+  }
+
+  provisioner "shell" {
+    script = "scripts/vagrant.sh"
   }
 }
