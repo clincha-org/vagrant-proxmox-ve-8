@@ -11,6 +11,7 @@ This repository contains the code used to create the Vagrant box for Proxmox on 
 ## Usage
 
 Ensure you have met the following dependencies:
+
 - Install Vagrant (https://www.vagrantup.com/downloads)
 - Install Oracle VM VirtualBox (https://www.virtualbox.org/wiki/Downloads)
 
@@ -50,3 +51,4 @@ ssh -p 2222 vagrant@127.0.0.1
 
 You can access the Proxmox web interface by navigating to `https://127.0.0.1:8006` in your browser. The default username is `root` and the password is `vagrant`.
 
+![proxmox-gui.png](images/proxmox-gui.png)
