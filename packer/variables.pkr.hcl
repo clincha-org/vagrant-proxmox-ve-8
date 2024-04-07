@@ -61,3 +61,13 @@ variable "headless" {
   type    = bool
   default = false
 }
+
+# Output
+variable "output_directory" {
+  type    = string
+  default = "out/packer"
+}
+variable "output_filename" {
+  type    = string
+  default = "proxmox-ve-8"
+}

@@ -1,19 +1,21 @@
-# vagrant-proxmox
+# vagrant-proxmox-ve-8
 
-This repository contains the code used to create the Vagrant box for Proxmox on VirtualBox. The box can be used to test Proxmox in a development environment and then destroyed when no longer needed.
+This repository contains the code used to create the Vagrant box for Proxmox 8.1 on VirtualBox. The box can be used to test Proxmox in a development environment and then destroyed when no longer needed.
 
-## Versions
+Report any issues or feature requests in the [issues section](https://github.com/clincha-org/vagrant-proxmox-ve-8/issues) of this repository.
 
-**Proxmox-VE 8**: https://app.vagrantup.com/clincha/boxes/proxmox-ve-8/  
-**Proxmox-VE 7**: Coming soon  
-**Proxmox-VE 6**: No plan to release (please raise an issue if you want it)
+## Vagrant Cloud
+
+This box is released to Vagrant Cloud for ease of access.
+
+[clincha](https://app.vagrantup.com/clincha)/[proxmox-ve-8](https://app.vagrantup.com/clincha/boxes/proxmox-ve-8)
 
 ## Usage
 
 Ensure you have met the following dependencies:
 
-- Install Vagrant (https://www.vagrantup.com/downloads)
 - Install Oracle VM VirtualBox (https://www.virtualbox.org/wiki/Downloads)
+- Install Vagrant (https://www.vagrantup.com/downloads)
 
 ### VagrantFile
 
@@ -51,4 +53,4 @@ ssh -p 2222 vagrant@127.0.0.1
 
 You can access the Proxmox web interface by navigating to `https://127.0.0.1:8006` in your browser. The default username is `root` and the password is `vagrant`.
 
-![proxmox-gui.png](images/proxmox-gui.png)
+![proxmox-gui.png](img/proxmox-gui.png)

@@ -1,0 +1,8 @@
+name: Release
+on:
+  - push
+jobs:
+  release:
+    uses: ./.github/workflows/packer-build.yml
+    with:
+      release: false

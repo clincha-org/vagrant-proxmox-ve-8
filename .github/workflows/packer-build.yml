@@ -1,0 +1,70 @@
+name: Packer build
+on:
+  workflow_call:
+    inputs:
+      release:
+        type: boolean
+        required: false
+        description: "Set to true to create a release in GitHub and push to Vagrant Cloud"
+        default: false
+      version:
+        type: string
+        required: false
+        description: "Version number to use for the release"
+    secrets:
+      ACCESS_TOKEN:
+        required: false
+        description: "Token for Vagrant Cloud"
+jobs:
+  packer_build:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: "Install Packer"
+        run: |
+          wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+          echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+          sudo apt update && sudo apt install packer
+
+      - name: "Install VirtualBox"
+        run: |
+          wget -O- https://www.virtualbox.org/download/oracle_vbox_2016.asc | sudo gpg --dearmor -o /usr/share/keyrings/oracle-virtualbox-2016.gpg
+          echo "deb [arch=amd64 signed-by=/usr/share/keyrings/oracle-virtualbox-2016.gpg] https://download.virtualbox.org/virtualbox/debian $(lsb_release -cs) contrib" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+          sudo apt update && sudo apt install virtualbox-7.0
+
+      - name: "Checkout code"
+        uses: actions/checkout@v4
+
+      - name: "Install Packer plugins"
+        run: |
+          packer plugins install github.com/hashicorp/virtualbox
+          packer plugins install github.com/hashicorp/vagrant
+
+      - name: "Validate Packer code"
+        working-directory: packer
+        run: |
+          packer validate proxmox-ve-8.pkr.hcl
+
+      - name: "Build"
+        if: ${{ inputs.release == 'false' }}
+        working-directory: packer
+        run: |
+          packer build \
+          -except "vagrant-cloud" \
+          .
+
+      - name: "Build and release"
+        if: ${{ inputs.release == 'true' }}
+        working-directory: packer
+        run: |
+          packer build \
+          -var "version=${{ inputs.version }}" \
+          -var "access_token=${{ secrets.ACCESS_TOKEN }}" \
+          -var "version_description=Build $(date +'%Y-%m-%d')" \
+          -var "headless=true" \
+          .
+
+      - name: "Create a new release in Github"
+        if: ${{ inputs.release == 'true' }}
+        uses: ncipollo/release-action@v1.14.0
+        with:
+            artifacts: packer/out/*
