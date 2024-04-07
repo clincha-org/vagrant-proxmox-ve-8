@@ -69,16 +69,8 @@ jobs:
           echo "Build date: $(date +'%Y-%m-%d')" >> release.md
           echo "See Vagrant Cloud for vagrant box: https://app.vagrantup.com/clincha/boxes/proxmox-ve-8/versions/${{ inputs.version }}" >> release.md
 
-      - name: "Compress the virtual machine artifacts"
-        if: ${{ inputs.release == true }}
-        run: |
-          tar -czf packer/out/vagrant-proxmox-ve-8.tar.gz packer/out/packer/*
-
       - name: "Create a new release in Github"
         if: ${{ inputs.release == true }}
         uses: ncipollo/release-action@v1.14.0
         with:
-          artifacts: |
-            packer/out/vagrant-proxmox-ve-8.tar.gz
-            packer/out/vagrant/*
-          body: release.md
+          bodyFile: release.md
