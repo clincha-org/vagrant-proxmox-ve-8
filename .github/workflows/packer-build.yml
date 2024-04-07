@@ -42,7 +42,7 @@ jobs:
       - name: "Validate Packer code"
         working-directory: packer
         run: |
-          packer validate proxmox-ve-8.pkr.hcl
+          packer validate -syntax-only proxmox-ve-8.pkr.hcl 
 
       - name: "Build"
         if: ${{ inputs.release == 'false' }}
@@ -67,4 +67,10 @@ jobs:
         if: ${{ inputs.release == 'true' }}
         uses: ncipollo/release-action@v1.14.0
         with:
-            artifacts: packer/out/*
+            artifacts: |
+              packer/out/packer/*
+              packer/out/vagrant/*
+            body: |
+              Release ${{ inputs.version }}
+              Build date: $(date +'%Y-%m-%d')
+              See Vagrant Cloud for vagrant box: https://app.vagrantup.com/clincha/boxes/proxmox-ve-8/versions/${{ inputs.version }}

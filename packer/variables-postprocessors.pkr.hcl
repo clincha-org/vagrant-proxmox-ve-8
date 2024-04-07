@@ -19,7 +19,7 @@ variable "keep_input_artifact" {
 }
 variable "output" {
   type    = string
-  default = "out/vagrant/{{.BuildName}}.box"
+  default = "out/vagrant/proxmox-ve-8.box"
 }
 
 # vagrant-cloud
