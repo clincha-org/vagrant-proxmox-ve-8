@@ -60,7 +60,6 @@ jobs:
           -var "version=${{ inputs.version }}" \
           -var "access_token=${{ secrets.ACCESS_TOKEN }}" \
           -var "version_description=Build $(date +'%Y-%m-%d')" \
-          -var "headless=true" \
           .
 
       - name: "Create a new release in Github"

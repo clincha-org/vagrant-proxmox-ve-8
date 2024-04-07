@@ -59,7 +59,7 @@ variable "rtc_time_base" {
 }
 variable "headless" {
   type    = bool
-  default = false
+  default = true
 }
 
 # Output
