@@ -1,6 +1,4 @@
 name: Packer build
-permissions:
-  contents: write
 on:
   workflow_call:
     inputs:
