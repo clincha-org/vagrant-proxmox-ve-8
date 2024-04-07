@@ -1,4 +1,6 @@
 name: Packer build
+permissions:
+  contents: write
 on:
   workflow_call:
     inputs:
@@ -66,10 +68,10 @@ jobs:
         if: ${{ inputs.release == true }}
         uses: ncipollo/release-action@v1.14.0
         with:
-            artifacts: |
-              packer/out/packer/*
-              packer/out/vagrant/*
-            body: |
-              Release ${{ inputs.version }}
-              Build date: $(date +'%Y-%m-%d')
-              See Vagrant Cloud for vagrant box: https://app.vagrantup.com/clincha/boxes/proxmox-ve-8/versions/${{ inputs.version }}
+          artifacts: |
+            packer/out/packer/*
+            packer/out/vagrant/*
+          body: |
+            Release ${{ inputs.version }}
+            Build date: $(date +'%Y-%m-%d')
+            See Vagrant Cloud for vagrant box: https://app.vagrantup.com/clincha/boxes/proxmox-ve-8/versions/${{ inputs.version }}
