@@ -59,5 +59,15 @@ variable "rtc_time_base" {
 }
 variable "headless" {
   type    = bool
-  default = false
+  default = true
+}
+
+# Output
+variable "output_directory" {
+  type    = string
+  default = "out/packer"
+}
+variable "output_filename" {
+  type    = string
+  default = "proxmox-ve-8"
 }

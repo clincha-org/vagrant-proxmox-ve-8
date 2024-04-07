@@ -18,6 +18,9 @@ source "virtualbox-iso" "proxmox-ve-8" {
   firmware      = var.firmware
   rtc_time_base = var.rtc_time_base
   headless      = var.headless
+
+  output_directory = var.output_directory
+  output_filename  = var.output_filename
 }
 
 build {
@@ -44,6 +47,8 @@ build {
       vagrantfile_template = var.vagrantfile_template
       compression_level    = var.compression_level
       include              = var.include
+      keep_input_artifact  = var.keep_input_artifact
+      output               = var.output
     }
 
     post-processor "vagrant-cloud" {
