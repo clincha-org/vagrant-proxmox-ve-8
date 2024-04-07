@@ -8,6 +8,6 @@ jobs:
     uses: ./.github/workflows/packer-build.yml
     with:
       release: true
-      version: ${{ github.event.release.tag_name }}
+      version: ${{ github.ref_name }}
     secrets:
       ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
