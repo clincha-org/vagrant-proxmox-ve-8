@@ -1,6 +1,8 @@
 name: Development
 on:
-  - push
+  push:
+    branches-ignore:
+      - main
 jobs:
   development:
     uses: ./.github/workflows/packer-build.yml
