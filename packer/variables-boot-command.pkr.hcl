@@ -4,27 +4,27 @@ variable "boot_command" {
     "<down><enter>", # Terminal install
     "<wait1m>", # Wait for DHCP and clock sync
     "<enter>", # Licence accept
-    "<wait2>",
+    "<wait>",
     "<enter>", # Choose disk
-    "<wait2>",
+    "<wait>",
     "<up><up><up><enter>", # Choose country
-    "<wait2>",
+    "<wait>",
     "<end><up><up><up><up><up><up><up><up><up><up><up><up><up><up><up><enter>", # United Kingdom
-    "<wait2>",
+    "<wait>",
     "<down><down><enter>", # Choose keyboard layout
-    "<wait2>",
+    "<wait>",
     "<end><enter>", # United Kingdom
-    "<wait2>",
+    "<wait>",
     "<down><enter>", # Complete
-    "<wait2>",
+    "<wait>",
     "vagrant<down>", # root password
     "vagrant<down>", # root password
     "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>", # delete 'mail@example.invalid'
     "vagrant<leftShiftOn>'<leftShiftOff>localhost.com<down>", # root email 'vagrant@localhost.com'
     "<enter>", # Confirm root credentials
-    "<wait2>",
+    "<wait>",
     "<enter>", # Confirm network settings
-    "<wait2>",
+    "<wait>",
     "<right><enter>" # Begin installation
   ]
 }
