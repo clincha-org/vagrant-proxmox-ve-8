@@ -2,7 +2,7 @@ variable "boot_command" {
   type    = list(string)
   default = [
     "<down><enter>", # Terminal install
-    "<wait30>", # Wait for DHCP and clock sync
+    "<wait1m>", # Wait for DHCP and clock sync
     "<enter>", # Licence accept
     "<wait2>",
     "<enter>", # Choose disk
