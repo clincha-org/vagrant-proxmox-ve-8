@@ -3,7 +3,6 @@ on:
   push:
     branches-ignore:
       - main
-  workflow_dispatch: {}
 jobs:
   development:
     uses: ./.github/workflows/packer-build.yml
