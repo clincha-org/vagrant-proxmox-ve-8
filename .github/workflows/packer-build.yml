@@ -48,8 +48,7 @@ jobs:
         if: ${{ inputs.release == false }}
         working-directory: packer
         run: |
-          env USER=$LOGNAME
-          packer build \
+          sudo packer build \
           -except "vagrant-cloud" \
           .
 
