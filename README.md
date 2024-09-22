@@ -1,6 +1,6 @@
 # vagrant-proxmox-ve-8
 
-This repository contains the code used to create the Vagrant box for Proxmox 8.1 on VirtualBox. The box can be used to test Proxmox in a development environment and then destroyed when no longer needed.
+This repository contains the code used to create the Vagrant box for Proxmox 8 on VirtualBox. The box can be used to test Proxmox in a development environment and then destroyed when no longer needed.
 
 Report any issues or feature requests in the [issues section](https://github.com/clincha-org/vagrant-proxmox-ve-8/issues) of this repository.
 

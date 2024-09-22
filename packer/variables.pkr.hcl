@@ -7,7 +7,7 @@ variable "guest_os_type" {
 # ISO
 variable "iso_url" {
   type    = string
-  default = "https://enterprise.proxmox.com/iso/proxmox-ve_8.1-2.iso"
+  default = "https://enterprise.proxmox.com/iso/proxmox-ve_8.2-2.iso"
 }
 variable "iso_checksum" {
   type    = string
