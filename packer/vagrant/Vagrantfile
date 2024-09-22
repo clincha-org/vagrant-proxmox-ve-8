@@ -2,5 +2,5 @@ Vagrant.configure("2") do |config|
   # Set the proxmox vm id
   config.vm.box = "clincha/proxmox-ve-8"
   # Allow access to the Proxmox web interface
-  config.vm.network "forwarded_port", id: "proxmox_web_gui" guest: 8006, host: 8006, host_ip: "127.0.0.1"
+  config.vm.network "forwarded_port", id: "proxmox_web_gui", guest: 8006, host: 8006, host_ip: "127.0.0.1"
 end
