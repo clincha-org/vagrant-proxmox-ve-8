@@ -7,11 +7,11 @@ variable "guest_os_type" {
 # ISO
 variable "iso_url" {
   type    = string
-  default = "https://enterprise.proxmox.com/iso/proxmox-ve_8.1-2.iso"
+  default = "https://enterprise.proxmox.com/iso/proxmox-ve_8.2-2.iso"
 }
 variable "iso_checksum" {
   type    = string
-  default = "sha256:f3e3d2a6ad8e44020a499855475a304dbb672c284410a3792826098c906c63c0"
+  default = "sha256:c96ad84eacbbcef299ab8f407f9602f832abb5ceb08a9aa288c1e1164df2da97"
 }
 
 # SSH

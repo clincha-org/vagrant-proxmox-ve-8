@@ -1,6 +1,6 @@
 # vagrant-proxmox-ve-8
 
-This repository contains the code used to create the Vagrant box for Proxmox 8.1 on VirtualBox. The box can be used to test Proxmox in a development environment and then destroyed when no longer needed.
+This repository contains the code used to create the Vagrant box for Proxmox 8 on VirtualBox. The box can be used to test Proxmox in a development environment and then destroyed when no longer needed.
 
 Report any issues or feature requests in the [issues section](https://github.com/clincha-org/vagrant-proxmox-ve-8/issues) of this repository.
 
@@ -22,14 +22,13 @@ Ensure you have met the following dependencies:
 ```ruby
 Vagrant.configure("2") do |config|
   config.vm.box = "clincha/proxmox-ve-8"
-  config.vm.box_version = "1.0.5"
 end
 ```
 
 ### CLI
 
 ```bash
-vagrant init clincha/proxmox-ve-8 --box-version 1.0.5
+vagrant init clincha/proxmox-ve-8
 vagrant up
 ```
 
